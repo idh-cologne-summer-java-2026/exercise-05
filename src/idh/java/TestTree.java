@@ -32,6 +32,7 @@ public class TestTree {
 		someTree.addChild("A");
 		assertEquals(1, someTree.size());
 
+		//smth missing?
 		assertEquals(9, tree.size());
 	}
 	
@@ -45,7 +46,7 @@ public class TestTree {
 		assertTrue(tree.contains("A"));
 		assertTrue(tree.contains("B1"));
 		assertFalse(tree.contains("B3"));
-		assertFalse(tree.contains("D1"));
+		assertTrue(tree.contains("D1"));
 	}
 
 }

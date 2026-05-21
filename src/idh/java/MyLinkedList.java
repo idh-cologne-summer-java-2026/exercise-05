@@ -14,8 +14,21 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 			
+		}	
+		
+		//recursive version of get(int)
+	public T get(int index) {
+		if (index == 0) {
+			return payload;
+		} else {
+			if (next == null) {
+				return null;
+			} else {
+				return next.get(index - 1);
+			}
 		}
 	}
+}
 
 	/**
 	 * We only need to store the very first element of our list, because it will
@@ -23,11 +36,23 @@ public class MyLinkedList<T> {
 	 */
 	ListElement first;
 
+	//recursive addition of recursive get(int)
+	public T get(int index) {
+		if (isEmpty())
+		{
+			return null;
+		}
+		return first.get(index);
+	}
+	
+	
+	
 	/**
      * Returns the number of elements in this list.
      *
      * @return the number of elements
      */
+	
 	public int size() {
 		if (isEmpty())
 			return 0;
@@ -186,13 +211,18 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
-	public T get(int index) {
+
+	
+	//old get(int) function)
+	/*public T get(int index) {
 		ListElement el = getElement(index);
 		if (el == null)
 			return null;
 		else 
 			return el.payload;
 	}
+*/
+
 
 	/**
 	 * Internal method that iterates over the list, returning the last element
