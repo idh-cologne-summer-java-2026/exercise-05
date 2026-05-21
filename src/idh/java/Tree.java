@@ -18,6 +18,9 @@ public class Tree<T> {
 	 */
 	public int size() {
 		// TODO: Implement me!
+		if(next == null) {
+			return 1;
+		}
 		return 0;
 	}
 

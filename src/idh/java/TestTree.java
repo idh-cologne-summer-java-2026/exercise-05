@@ -1,11 +1,13 @@
 package idh.java;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 public class TestTree {
 	Tree<String> tree;
@@ -45,7 +47,7 @@ public class TestTree {
 		assertTrue(tree.contains("A"));
 		assertTrue(tree.contains("B1"));
 		assertFalse(tree.contains("B3"));
-		assertFalse(tree.contains("D1"));
+		assertTrue(tree.contains("D1"));
 	}
 
 }

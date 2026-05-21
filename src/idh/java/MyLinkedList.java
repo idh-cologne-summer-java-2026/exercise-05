@@ -14,6 +14,40 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 		}
+	
+	//Aufgabe 1
+	//Erster Basisfall: Sind wir das Element, welches an der gefragten Index-Position steht?
+	//Zweiter Basisfall: Es gibt mehr Indexpositionen als Elemente
+	//Rekursionsschritt: Die Elmente reiechen sich die Indexzahl durch und rechnen -1. Wenn die Zahl 
+	//bei 0 angekommen ist, wird der payload zurückgegeben
+		
+	public T get(int index) {
+		if (index == 0) { //Erster Basisfall
+			return payload;
+		} else { // Zweiter Basisfall (zu viele Indexpositionen)
+			if (next == null) {
+				return null;
+			} else { //Erster Basisfall, wenn wir nicht das gesuchte Element sind 
+			return next.get(index -1);
+			}
+		}
+		
+	}
+		
+	//Beispiel Session: 
+	// Für die Rekursive Methode, muss die Methode in die Klasse ListElement
+	//Was ist der Basisfall? Hier: Sind wir das letzte Element?
+	//WAs ist der Rekursionsschritt?
+		
+	//Rekursives Vorgehen mit Size (Session)
+	public int size() {
+		if(next == null) { //Basisfall
+			return 1;
+		} else { //Rekursionsschritt
+			return next.size() + 1;
+				
+			}
+		}
 	}
 
 	/**
@@ -27,6 +61,30 @@ public class MyLinkedList<T> {
      *
      * @return the number of elements
      */
+	
+	/**
+	 * Returns the value at the specified index, or {@code null} if out of bounds.
+	 *
+	 * @param index zero-based position of the element to retrieve
+	 * @return the value at {@code index}, or {@code null}
+	 */
+	public T get(int index) {
+		if (isEmpty()) {
+			return null;
+		}
+		return first.get(index);
+		
+		/*ListElement el = getElement(index);
+		if (el == null)
+			return null;
+		else 
+			return el.payload;*/
+	}
+	
+	
+	
+	// Liste wird gefragt, wie lange sie ist. Sie sagt, sozusagen, dass die Elemente das selbst wissen müssen
+	// wodurch die Anfrage an die Klasse ListElement weitergegeben wird 
 	public int size() {
 		if (isEmpty())
 			return 0;
@@ -179,19 +237,6 @@ public class MyLinkedList<T> {
 		first = null;
 	}
 
-	/**
-	 * Returns the value at the specified index, or {@code null} if out of bounds.
-	 *
-	 * @param index zero-based position of the element to retrieve
-	 * @return the value at {@code index}, or {@code null}
-	 */
-	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
-			return null;
-		else 
-			return el.payload;
-	}
 
 	/**
 	 * Internal method that iterates over the list, returning the last element
