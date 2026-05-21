@@ -21,6 +21,7 @@ public class TestTree {
 		tree.getChildren().get(0).addChild("C3");
 		tree.getChildren().get(1).addChild("C4");
 		tree.getChildren().get(1).addChild("C5");
+		// Hier wird D1 klar und deutlich zum Baum hinzugefügt!
 		tree.getChildren().get(1).getChildren().get(0).addChild("D1");
 	}
 
@@ -45,7 +46,8 @@ public class TestTree {
 		assertTrue(tree.contains("A"));
 		assertTrue(tree.contains("B1"));
 		assertFalse(tree.contains("B3"));
-		assertFalse(tree.contains("D1"));
+		
+		// KORREKTUR: Muss assertTrue sein, da D1 im setUp() hinzugefügt wurde!
+		assertTrue(tree.contains("D1"));
 	}
-
 }

@@ -13,33 +13,44 @@ public class Tree<T> {
 
 	/**
 	 * Returns the number of nodes in this tree.
-	 * 
-	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		// Basisfall: Wenn der Knoten leer ist (null), zählt er als 0, sonst als 1.
+		// Das ist wichtig, da ein "new Tree()" laut Test die Größe 0 haben soll.
+		int count = (value == null) ? 0 : 1;
+		
+		// Rekursionsschritt: Wir addieren die Größen aller Kinder-Teilbäume dazu
+		for (int i = 0; i < children.size(); i++) {
+			count += children.get(i).size();
+		}
+		
+		return count;
 	}
 
 	/**
 	 * Checks whether the tree contains a value that is equal to the given object.
-	 * I.e., the comparison between the objects is done with {@link Object#equals}.
-	 * The method returns false when all nodes have been visited and none of them is
-	 * equal to the object. It returns true when a matching object has been found.
-	 * 
-	 * @param object The object that we want to check for
-	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		// 1. Basisfall: Ist der gesuchte Wert genau in DIESEM Knoten?
+		if (object == null ? value == null : object.equals(value)) {
+			return true;
+		}
+		
+		// 2. Rekursionsschritt: Suchtrupps in alle Kinder-Teilbäume schicken
+		for (int i = 0; i < children.size(); i++) {
+			// Sobald ein Kind (oder dessen Kinder) "true" zurückgibt, brechen wir erfolgreich ab
+			if (children.get(i).contains(object)) {
+				return true;
+			}
+		}
+		
+		// 3. Wenn weder hier noch in den Kindern etwas gefunden wurde:
 		return false;
 	}
 
 	/**
 	 * Adds a child to this node. The object representing the sub tree is
 	 * automatically created, and added to the children's list.
-	 * 
-	 * @param object The value we want to store.
 	 */
 	public void addChild(T object) {
 		Tree<T> subtree = new Tree<T>();
@@ -62,15 +73,7 @@ public class Tree<T> {
 	}
 
 	/**
-	 * Produces a string representation of the tree. Subtrees are indented with spaces. 
-	 * A tree with the value "A" and the two children "B" and "C" is shown like this:
-	 * <pre>
-	 * A
-	 *   B
-	 *   C
-	 * </pre>
-	 * 
-	 * 
+	 * Produces a string representation of the tree.
 	 */
 	public String toString() {
 		return toString(0);

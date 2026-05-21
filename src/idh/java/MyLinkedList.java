@@ -4,8 +4,7 @@ public class MyLinkedList<T> {
 
 	/**
 	 * Helper class for the list elements
-	 * 
-	 * It's an "inner class", i.e., can only be used within MyLinkedList. 
+	 * * It's an "inner class", i.e., can only be used within MyLinkedList. 
 	 */
 	private class ListElement {
 		T payload;
@@ -62,8 +61,7 @@ public class MyLinkedList<T> {
 	/**
      * Removes the first occurrence of the specified object from the list.
      * Comparison is performed using {@link Object#equals}.
-     *  
-     * @param o the object to remove
+     * * @param o the object to remove
      * @return {@code true} if an element was removed, {@code false} if not found
      */
 	public boolean remove(Object o) {
@@ -101,7 +99,7 @@ public class MyLinkedList<T> {
 	 * @param index   zero-based position of the element to replace
 	 * @param element the new value to store at {@code index}
 	 * @return the value previously stored at {@code index}, or {@code null}
-	 *         if the index is out of bounds
+	 * if the index is out of bounds
 	 */
 	public T set(int index, T element) {
 	    ListElement e = getElement(index);
@@ -131,8 +129,7 @@ public class MyLinkedList<T> {
 	 /**
      * Removes and returns the element at the specified index.
      * Returns {@code null} if the index is out of bounds.
-     * 
-     * @param index zero-based position of the element to remove
+     * * @param index zero-based position of the element to remove
      * @return the removed element's value, or {@code null} if out of bounds
      */
 	public T remove(int index) {
@@ -196,8 +193,7 @@ public class MyLinkedList<T> {
 	/**
 	 * Internal method that iterates over the list, returning the last element
 	 * (i.e., the one whose next field is null)
-	 * 
-	 * @return
+	 * * @return
 	 */
 	private ListElement last() {
 		if (first == null)
@@ -212,22 +208,31 @@ public class MyLinkedList<T> {
 
 	/**
 	 * Internal method to get the list element (not the value) of the list at the
-	 * specified index position.
-	 * 
-	 * @param index
+	 * specified index position. REKURSIV GELÖST!
+	 * * @param index
 	 * @return
 	 */
 	private ListElement getElement(int index) {
-		if (isEmpty())
-			return null;
-		ListElement current = first;
-		while (current != null) {
-			if (index == 0)
-				return current;
-			index--;
-			current = current.next;
-		}
-		return null;
+		// Wir starten die Rekursion beim allerersten Element
+		return getElementRecursive(first, index);
 	}
 
-}
+	/**
+	 * Rekursive Hilfsmethode, die sich selbst aufruft, bis sie das Ziel findet.
+	 */
+	private ListElement getElementRecursive(ListElement current, int index) {
+		// 1. Basisfall: Ende der Liste erreicht oder Index ungültig
+		if (current == null || index < 0) {
+			return null;
+		}
+		
+		// 2. Basisfall: Ziel erreicht! (Der Index wurde bis auf 0 runtergezählt)
+		if (index == 0) {
+			return current;
+		}
+		
+		// 3. Rekursionsschritt: Rufe dich selbst auf!
+		// Gehe ein Kettenglied weiter (current.next) und ziehe 1 vom Index ab.
+		return getElementRecursive(current.next, index - 1);
+	}
+}	
