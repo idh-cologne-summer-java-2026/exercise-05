@@ -13,6 +13,7 @@ public class MyLinkedList<T> {
 
 		ListElement(T value) {
 			this.payload = value;
+			
 		}
 	}
 
