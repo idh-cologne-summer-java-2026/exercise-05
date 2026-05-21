@@ -1,5 +1,7 @@
 package idh.java;
 
+import java.util.List;
+
 public class MyLinkedList<T> {
 
 	/**
@@ -185,12 +187,18 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
+	
 	public T get(int index) {
 		ListElement el = getElement(index);
-		if (el == null)
+		//Basisfall 1: wenn die Liste leer ist
+		if (el == null){
 			return null;
-		else 
+		}
+		//Basisfall 2: wenn wir schon bei 0 sind
+		if (index == 0) {
 			return el.payload;
+		}
+		return get(index - 1);
 	}
 
 	/**
