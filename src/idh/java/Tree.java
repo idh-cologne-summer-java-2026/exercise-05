@@ -1,5 +1,7 @@
 package idh.java;
 
+import idh.java.MyLinkedList.ListElement;
+
 public class Tree<T> {
 	/**
 	 * The value stored at this tree node
@@ -17,8 +19,15 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		int size = 0;
+		if (this.value != null) {
+			size = 1;
+		}
+		
+		for (int i = 0; i < children.size(); i++)	{
+			size = size + children.get(i).size(); 
+		}
+		return size;
 	}
 
 	/**
@@ -31,7 +40,15 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		if (this.value != null && this.value.equals(object))	{
+			return true;
+		}
+		
+		for (int i = 0; i < children.size(); i++)	{
+			if (children.get(i).contains(object))	{
+				return true;
+			}
+		}
 		return false;
 	}
 

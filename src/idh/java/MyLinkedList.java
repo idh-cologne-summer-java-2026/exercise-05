@@ -7,7 +7,7 @@ public class MyLinkedList<T> {
 	 * 
 	 * It's an "inner class", i.e., can only be used within MyLinkedList. 
 	 */
-	private class ListElement {
+	public class ListElement {
 		T payload;
 		ListElement next = null;
 
@@ -185,12 +185,29 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
-	public T get(int index) {
+	
+	/*public T get(int index) {
 		ListElement el = getElement(index);
 		if (el == null)
 			return null;
 		else 
 			return el.payload;
+	}*/
+	
+	public T get(int index) {
+	    return getRecursive(first, index);
+	}
+
+	private T getRecursive(ListElement current, int index) {
+	    if (current == null) {
+	        return null;
+	    }
+
+	    if (index == 0) {
+	        return current.payload;
+	    }
+
+	    return getRecursive(current.next, index - 1);
 	}
 
 	/**
