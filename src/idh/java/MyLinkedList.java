@@ -186,11 +186,15 @@ public class MyLinkedList<T> {
 	 * @return the value at {@code index}, or {@code null}
 	 */
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
+		if(isEmpty())
 			return null;
-		else 
-			return el.payload;
+		if(index == 0) {
+			return r.payload;
+		}
+		else {
+			r = r.next;
+			get(index-1);
+		}
 	}
 
 	/**
