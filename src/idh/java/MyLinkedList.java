@@ -196,7 +196,7 @@ public class MyLinkedList<T> {
 	public T get(int index) {
 		
 		T result = getRecursive(first, index);
-		System.out.println(result);
+		//System.out.println(result);
 		
 		return result;
 	}

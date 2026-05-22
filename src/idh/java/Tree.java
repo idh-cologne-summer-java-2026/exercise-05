@@ -17,8 +17,26 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		
+		int result = 0;  // anfangs ist size  = 0
+		
+		if (value != null) {
+	        result = 1;
+	    }                    // Wenn der Tree nicht leer ist, dann automatisch size = 1; 
+							// Mit size 1 übergang zur Schleife 
+
+		 
+		
+
+		for (int i = 0; i < children.size(); i++) {  //Schleife läuft über Anzahl von children
+		        result += children.get(i).size();  // Iteriert über children und schreibt das Ergebnis mit der Größe am Index
+		    }
+		
+		    
+		return result;
+		
+		
+		
 	}
 
 	/**
@@ -31,9 +49,34 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
-	}
+		
+
+		if (value == null) {
+		        if (object == null) {
+		            return true;         // Fall1: Suche = 0, Knoten = 0 -> Objekt gefunden
+		        }
+		    } else {
+		        if (value.equals(object)) {
+		            return true;            // Fall2: Wert des Knotens ist gleich der Suche -> true 
+		        }
+		    }
+		
+		    for (int i = 0; i < children.size(); i++) {
+		        if (children.get(i).contains(object)) {
+		            return true;             // Fall3: Aktueller Knoten enthält den Wert nicht, es wird über children iteriert
+		        }
+		    }
+		
+		    return false;   // Wert ist im Baum gar nicht vorhanden
+		}
+
+		
+		
+		
+		
+		
+		
+		
 
 	/**
 	 * Adds a child to this node. The object representing the sub tree is
