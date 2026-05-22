@@ -185,12 +185,20 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
-	public T get(int index) {
+	 /* public T get(int index) {
 		ListElement el = getElement(index);
 		if (el == null)
 			return null;
 		else 
 			return el.payload;
+	} */
+	
+	public T get(int index) {
+		
+		T result = getRecursive(first, index);
+		System.out.println(result);
+		
+		return result;
 	}
 
 	/**
@@ -229,5 +237,29 @@ public class MyLinkedList<T> {
 		}
 		return null;
 	}
+	
+	
+	
+	
+
+	private T getRecursive(ListElement current, int index) {
+	  
+		
+		if (index < 0) {
+	        return null;  //Fall1: Index ist negativ 
+	    }
+	
+	    if (current == null) {  //Fall2: Index zeigt auf null
+	        return null;
+	    }
+	
+	    if (index == 0) {
+	        return current.payload;   // Element gefunden
+	    }
+	
+	    return getRecursive(current.next, index - 1);
+}
+
+	
 
 }
