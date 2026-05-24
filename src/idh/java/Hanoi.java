@@ -149,7 +149,30 @@ public class Hanoi {
 	 * @param util
 	 */
 	private void movePieces(int numberOfPieces, char from, char to, char util) {
-		// TODO: Implement me!
+		
+		char l = from;
+		char m = util;
+		char r = to;
+		
+		// Fall1: Move 1 Piece von Stab links zu Stab rechts
+		 if (numberOfPieces == 1) {       
+			 movePiece(l, r);
+		        
+		        
+		    } else {
+		    	
+		    	//Fall2:
+		    	
+		        // a) n-1 Scheiben von Stab links auf Stab Mitte
+		        movePieces(numberOfPieces - 1, l, m, r);
+		        
+		        // b) übrige Scheibe von l auf r
+		        movePiece(l, r);
+		        
+		        // c) n-1 Scheiben von Stab Mitte auf Stab rechts
+		        movePieces(numberOfPieces - 1, m, r, l);
+		    }
+		
 
 	}
 
