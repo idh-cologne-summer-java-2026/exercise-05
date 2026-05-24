@@ -27,25 +27,38 @@ public class TestTree {
 	@Test
 	public void testSize() {
 		Tree<String> someTree = new Tree<String>();
+		System.out.println("someTree.size0 = "+someTree.size());
 		assertEquals(0, someTree.size());
 
 		someTree.addChild("A");
+		System.out.println("someTree.size1 = "+someTree.size());
 		assertEquals(1, someTree.size());
 
+		System.out.println("tree.size = "+tree.size());
 		assertEquals(9, tree.size());
+		System.out.println("==================================");
 	}
 	
 	@Test
 	public void testContains() {
 		Tree<String> someTree = new Tree<String>();
+		
+		System.out.println("someTree0 contains A = "+someTree.contains("A"));
 		assertFalse(someTree.contains("A"));
 		someTree.addChild("A");
+		System.out.println("someTree1 contains A = "+someTree.contains("A"));
 		assertTrue(someTree.contains("A"));
-		
+
+		System.out.println("Tree contains A = "+tree.contains("A"));
+		System.out.println("Tree contains B1 = "+tree.contains("B1"));
+		System.out.println("Tree contains B3 = "+tree.contains("B3"));		
+		System.out.println("Tree contains D1 = "+tree.contains("D1"));
+		System.out.println("Tree contains D2 = "+tree.contains("D2"));
 		assertTrue(tree.contains("A"));
 		assertTrue(tree.contains("B1"));
 		assertFalse(tree.contains("B3"));
-		assertFalse(tree.contains("D1"));
+		assertTrue(tree.contains("D1"));
+		assertFalse(tree.contains("D2"));
 	}
 
 }

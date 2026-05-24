@@ -11,14 +11,31 @@ public class Tree<T> {
 	 */
 	MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
 
+	
 	/**
 	 * Returns the number of nodes in this tree.
 	 * 
 	 * @return the number of nodes in this tree
 	 */
-	public int size() {
-		// TODO: Implement me!
-		return 0;
+	public int size() { 
+		//has no value and no children
+		int size = 0;  
+		
+		// has value and maybe children
+		// root - has no parent
+		if (value != null) {
+	        size = 1;
+	    }
+		
+	    // children 0, 1, 2, ... - stored in parent
+		// leaf - end - has no children
+		for (int i = 0; i < children.size(); i++) 
+		{  
+			// Number of "children" of "children" .....
+			size = size + children.get(i).size();  
+		}
+		
+		return size;
 	}
 
 	/**
@@ -31,8 +48,30 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
+		
+		// root - has no parent
+		// has value and maybe children
+		if (value != null) {
+			 if (value.equals(object))
+				 return true;
+			 else {
+				 // Ask the children
+				 for (int i = 0; i < children.size(); i++) {
+				        if (children.get(i).contains(object)) {
+				            return true;             
+				        };
+				 };
+			 };
+		} else {
+		// root has no value, only children have value
+			 for (int i = 0; i < children.size(); i++) {
+			        if (children.get(i).contains(object)) {
+			            return true;             
+			        };
+			 };
+		}
+		// object are not in root and not in children
+	    return false;  
 	}
 
 	/**
