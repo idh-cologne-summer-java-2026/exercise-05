@@ -122,12 +122,15 @@ public class Hanoi {
 	private void runAutomatically() {
 		// we print out the initial situation
 		System.out.println(this);
+		System.out.println("------Start------");
 
 		// this is the entry point into the recursion
 		movePieces(left.size(), 'l', 'r', 'm');
 
 		// and in the end, we check that everything has been moved
+
 		System.out.println(this);
+		System.out.println("-------End-------");
 	}
 
 	/**
@@ -140,6 +143,7 @@ public class Hanoi {
 	 * <li>Move 1 piece (base case)</li>
 	 * <li>Move n-1 pieces via recursion</li>
 	 * </ol>
+	 * see https://www.centron.de/tutorial/turm-von-hanoi-problem-erklaert-java-rekursive-loesung/
 	 * 
 	 * 
 	 * 
@@ -148,9 +152,23 @@ public class Hanoi {
 	 * @param to
 	 * @param util
 	 */
-	private void movePieces(int numberOfPieces, char from, char to, char util) {
-		// TODO: Implement me!
+	private void movePieces(int numberOfPieces, char from, char to, char util) 
+	{
+		if (numberOfPieces == 1)
+        {
+	        movePiece(from, to);
+            return;
+        }
+		
+		movePieces(numberOfPieces-1, from, util, to);
 
+        movePiece(from, to);
+		System.out.println(this);
+		System.out.println("-----------------");
+		
+        movePieces(numberOfPieces-1, util, to, from);
+		
+        return;
 	}
 
 }
