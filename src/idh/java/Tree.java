@@ -17,8 +17,15 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		int s = 0;
+		if (this.getValue() != null)
+			s = 1;
+
+		for (int i = 0; i < getChildren().size(); i++) {
+			Tree<T> child = getChildren().get(i);
+			s += child.size();
+		}
+		return s;
 	}
 
 	/**
@@ -31,7 +38,19 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		if (this.getValue() == null) {
+			if (object == null)
+				return true;
+		} else {
+			if (this.getValue().equals(object))
+				return true;
+		}
+
+		for (int i = 0; i < getChildren().size(); i++) {
+			Tree<T> child = getChildren().get(i);
+			if (child.contains(object))
+				return true;
+		}
 		return false;
 	}
 

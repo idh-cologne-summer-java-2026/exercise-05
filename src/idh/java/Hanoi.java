@@ -149,7 +149,20 @@ public class Hanoi {
 	 * @param util
 	 */
 	private void movePieces(int numberOfPieces, char from, char to, char util) {
-		// TODO: Implement me!
+		if (numberOfPieces <= 0)
+			return;
+
+		if (numberOfPieces == 1) {
+			movePiece(from, to);
+			return;
+		}
+
+		// Move n-1 pieces from -> util using to as auxiliary
+		movePieces(numberOfPieces - 1, from, util, to);
+		// Move the bottom piece from -> to
+		movePiece(from, to);
+		// Move the n-1 pieces from util -> to using from as auxiliary
+		movePieces(numberOfPieces - 1, util, to, from);
 
 	}
 
