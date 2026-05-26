@@ -57,6 +57,7 @@ public class MyLinkedList<T> {
 		if (isEmpty()) {
 			return null; 
 		}
+		return first.get(index);
 	}
 
 	/**
