@@ -17,8 +17,17 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		if (value == null) {
+			return 0; 
+		}
+		
+		int count = 1; 
+		
+		for (int i = 0; i<children.size(); i++) {
+			Tree<T> child = children.get(i); 
+			count += child.size();
+		}
+		return count;
 	}
 
 	/**
@@ -30,8 +39,19 @@ public class Tree<T> {
 	 * @param object The object that we want to check for
 	 * @return true or false
 	 */
-	public boolean contains(T object) {
-		// TODO: Implement me!
+	public boolean contains(Object object) {
+		if (value == null || object == null) {
+			return false;
+		}
+		if (value.equals(object)) {
+			return true;
+		}
+		for (int i = 0; i < children.size(); i++) {
+			Tree<T> child = children.get(i);
+			if (child != null && child.contains(object)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
