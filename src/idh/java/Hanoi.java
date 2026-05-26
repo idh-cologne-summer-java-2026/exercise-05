@@ -143,8 +143,9 @@ public class Hanoi {
 	 * <li>Move 1 piece (base case)</li>
 	 * <li>Move n-1 pieces via recursion</li>
 	 * </ol>
-	 * see https://www.centron.de/tutorial/turm-von-hanoi-problem-erklaert-java-rekursive-loesung/
-	 * 
+	 * see <a href="https://www.centron.de/tutorial/turm-von-hanoi-problem-erklaert-java-rekursive-loesung/">
+	 * Der Turm von Hanoi</a>.
+	 * Number of steps = (2^n)-1
 	 * 
 	 * 
 	 * @param numberOfPieces
@@ -154,18 +155,23 @@ public class Hanoi {
 	 */
 	private void movePieces(int numberOfPieces, char from, char to, char util) 
 	{
+		// 2. Move 1 piece (base case)
 		if (numberOfPieces == 1)
         {
 	        movePiece(from, to);
+	        // Reduction of println
+			//System.out.println(this);
+			//System.out.println("-----------------");
             return;
         }
 		
+		// 1. Move n-1 pieces via recursion
 		movePieces(numberOfPieces-1, from, util, to);
-
         movePiece(from, to);
 		System.out.println(this);
 		System.out.println("-----------------");
 		
+		// 3. Move n-1 pieces via recursion
         movePieces(numberOfPieces-1, util, to, from);
 		
         return;
