@@ -187,10 +187,21 @@ public class MyLinkedList<T> {
 	 */
 	public T get(int index) {
 		ListElement el = getElement(index);
-		if (el == null)
+		/*if (el == null)
 			return null;
 		else 
+			return el.payload; */ 
+		
+		if (index == 0) {
 			return el.payload;
+		} else {
+			if (el.next == null) {
+				return null;
+			} else {
+				return get(index - 1);
+		 } 
+		}
+		
 	}
 
 	/**

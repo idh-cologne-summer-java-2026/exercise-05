@@ -18,7 +18,15 @@ public class Tree<T> {
 	 */
 	public int size() {
 		// TODO: Implement me!
-		return 0;
+		int totalSize = 1;
+		MyLinkedList<Tree<T>> currentChild = this.children;
+		
+		while(currentChild != null) {
+			totalSize += currentChild.size();
+			currentChild = currentChild.next;
+		} return totalSize;
+		
+
 	}
 
 	/**
@@ -31,8 +39,22 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
+		if(this.value == null) {
+			if (object == null) {
+				return true;
+			} else if (this.value.equals(object)) {
+				return true;
+			}
+		}
+		
+		MyLinkedList<Tree<T>> currentElement = this.children.first;
+		while(this.children != null) {
+			MyLinkedList<Tree<T>> TreeChild = currentElement.value;
+			if(TreeChild.contains(object)) {
+				return true;
+				currentElement = currentElement.next;
+			}
+		} return false;
 	}
 
 	/**
