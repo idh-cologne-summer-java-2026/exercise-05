@@ -18,10 +18,19 @@ public class Tree<T> {
 	 */
 	public int size() {
 		// TODO: Implement me!
-		if(next == null) {
-			return 1;
+		int size = 0; 
+		
+		//checks if there is an object in the tree (bigger than 0)
+		if(this.value != null) {
+			size = 1;
 		}
-		return 0;
+		
+		//recursively checking all of the children size
+		for (int i = 0; i < children.size(); i++) {
+			//recursion, recalling the method within every tree branch
+			size += children.get(i).size();
+		}
+		return size;
 	}
 
 	/**
