@@ -31,7 +31,7 @@ public class TestTree {
 
 		someTree.addChild("A");
 		assertEquals(1, someTree.size());
-
+		
 		assertEquals(9, tree.size());
 	}
 	

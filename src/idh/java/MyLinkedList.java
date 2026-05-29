@@ -192,6 +192,26 @@ public class MyLinkedList<T> {
 		else 
 			return el.payload;
 	}
+	
+	public T recursiveGet(int index) {
+		ListElement el = getElement(index);
+		if(index == 0) {
+			if(el == null) {
+				return null;
+			}
+			return el.payload;
+		}	
+		else
+			recursiveGet(index -1);
+		
+		if(el == null) {
+			return null;
+		}
+		else 
+			return el.payload;
+	}
+
+
 
 	/**
 	 * Internal method that iterates over the list, returning the last element
@@ -229,5 +249,6 @@ public class MyLinkedList<T> {
 		}
 		return null;
 	}
+
 
 }

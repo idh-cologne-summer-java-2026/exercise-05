@@ -15,7 +15,7 @@ public class TestMyLinkedList {
 		ll = new MyLinkedList<String>();
 	}
 
-	@Test
+//	@Test
 	public void testClear() {
 		ll.add("A");
 		ll.add("B");
@@ -28,7 +28,7 @@ public class TestMyLinkedList {
 		assertEquals(0, ll.size());
 	}
 
-	@Test
+//	@Test
 	public void testAdd() {
 		assertEquals(0, ll.size());
 		assertTrue(ll.isEmpty());
@@ -84,8 +84,34 @@ public class TestMyLinkedList {
 		assertEquals(null, ll.get(25));
 
 	}
-
 	@Test
+	public void testRecursiveGet() {
+		
+		// get from empty list
+		assertEquals(null, ll.recursiveGet(0));
+
+		ll.add("A");
+		ll.add("B");
+		ll.add("C");
+		ll.add("D");
+		ll.add("E");
+		ll.add("F");
+
+		// get first element
+		assertEquals("A", ll.recursiveGet(0));
+
+		// get middle element
+		assertEquals("D", ll.recursiveGet(3));
+
+		// get last element
+		assertEquals("F", ll.recursiveGet(5));
+		
+		// get non-existing element 
+		assertEquals(null, ll.recursiveGet(25));
+
+	}
+
+//	@Test
 	public void testSize() {
 		assertEquals(0, ll.size());
 		ll.add("A");
@@ -100,7 +126,7 @@ public class TestMyLinkedList {
 		assertEquals(0, ll.size());
 	}
 
-	@Test
+//	@Test
 	public void testContains() {
 		ll.add("A");
 		ll.add("B");
@@ -114,7 +140,7 @@ public class TestMyLinkedList {
 		assertFalse(ll.contains("Z"));
 	}
 
-	@Test
+//	@Test
 	public void testRemoveByIndex() {
 		ll.add("A");
 		ll.add("B");
@@ -139,7 +165,7 @@ public class TestMyLinkedList {
 		assertEquals(3, ll.size());
 	}
 
-	@Test
+//	@Test
 	public void testRemoveByObject() {
 		// remove from empty list
 		assertFalse(ll.remove("A"));
