@@ -14,6 +14,20 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 		}
+		
+		public T get(int index) {
+			if (index == 1) {
+				return this.payload; 
+			}
+			if (this.next == null) {
+				System.out.print("Das Element existiert nicht");
+				return null; 
+			}
+			else {
+				return this.next.get(index - 1);
+			}
+				
+		}
 	}
 
 	/**
@@ -186,11 +200,14 @@ public class MyLinkedList<T> {
 	 * @return the value at {@code index}, or {@code null}
 	 */
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
-			return null;
-		else 
-			return el.payload;
+		ListElement el = first; 
+		if (el == null) {
+			System.out.print("Die Liste ist leer");
+			return null; 
+		}
+		else {
+			return el.get(index); 
+		}
 	}
 
 	/**

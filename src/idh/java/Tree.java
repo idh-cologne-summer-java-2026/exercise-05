@@ -17,8 +17,16 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		int counter = 1; 
+		if (this.children.first == null) {
+			counter++; 
+		}
+		else {
+			for(int i = 0; i < children.size(); i++) {
+				counter = counter + children.get(i).size(); 
+			} 
+		}
+		return counter;
 	}
 
 	/**
@@ -31,7 +39,16 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		if (object == this.value) {
+			return true; 
+		}
+		else {
+			for (int i = 0; i < this.children.size(); i++) {
+				if (this.children.get(i).contains(object)) {
+					return true; 
+				}
+			}
+		}
 		return false;
 	}
 
