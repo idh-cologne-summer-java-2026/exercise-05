@@ -191,6 +191,21 @@ public class MyLinkedList<T> {
 			return null;
 		else 
 			return el.payload;
+	
+		//Lösung Java Praktikum
+	//  public T get(int index) {
+	//	ListElement current = this.first;
+		//   while(current != null && index > 0)
+		//   {
+	    //      --current = current.next;
+		//      index--;
+			
+		//     }
+		//    if (current == null)
+		//    { return null; 
+		//    }
+		//      return current.payload }
+	
 	}
 
 	/**
@@ -218,16 +233,18 @@ public class MyLinkedList<T> {
 	 * @return
 	 */
 	private ListElement getElement(int index) {
-		if (isEmpty())
-			return null;
-		ListElement current = first;
-		while (current != null) {
-			if (index == 0)
-				return current;
-			index--;
-			current = current.next;
-		}
-		return null;
+		return getElementRecursive(first, index);
+	
 	}
+
+	private ListElement getElementRecursive(ListElement current, int index ) {
+		if(current == null)
+		return null;
+		
+		if(index == 0)
+			return current;
+		
+		return getElementRecursive(current.next, index -1);
+		}
 
 }
