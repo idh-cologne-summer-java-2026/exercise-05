@@ -1,94 +1,62 @@
 package idh.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tree<T> {
-	/**
-	 * The value stored at this tree node
-	 */
-	T value;
 
-	/**
-	 * The list of children
-	 */
-	MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
+	private T value;
+	private List<Tree<T>> children;
 
-	/**
-	 * Returns the number of nodes in this tree.
-	 * 
-	 * @return the number of nodes in this tree
-	 */
-	public int size() {
-		// TODO: Implement me!
-		return 0;
-	}
-
-	/**
-	 * Checks whether the tree contains a value that is equal to the given object.
-	 * I.e., the comparison between the objects is done with {@link Object#equals}.
-	 * The method returns false when all nodes have been visited and none of them is
-	 * equal to the object. It returns true when a matching object has been found.
-	 * 
-	 * @param object The object that we want to check for
-	 * @return true or false
-	 */
-	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
-	}
-
-	/**
-	 * Adds a child to this node. The object representing the sub tree is
-	 * automatically created, and added to the children's list.
-	 * 
-	 * @param object The value we want to store.
-	 */
-	public void addChild(T object) {
-		Tree<T> subtree = new Tree<T>();
-		subtree.setValue(object);
-		getChildren().add(subtree);
-	}
-
-	private String toString(int indentation) {
-		StringBuffer buf = new StringBuffer();
-
-		buf.append(" ".repeat(indentation));
-		buf.append(this.getValue());
-		buf.append('\n');
-
-		for (int i = 0; i < getChildren().size(); i++) {
-			buf.append(getChildren().get(i).toString(indentation + 2));
-		}
-
-		return buf.toString();
-	}
-
-	/**
-	 * Produces a string representation of the tree. Subtrees are indented with spaces. 
-	 * A tree with the value "A" and the two children "B" and "C" is shown like this:
-	 * <pre>
-	 * A
-	 *   B
-	 *   C
-	 * </pre>
-	 * 
-	 * 
-	 */
-	public String toString() {
-		return toString(0);
-	}
-
-	public T getValue() {
-		return value;
+	public Tree() {
+		this.children = new ArrayList<>();
 	}
 
 	public void setValue(T value) {
 		this.value = value;
 	}
 
-	public MyLinkedList<Tree<T>> getChildren() {
+	public T getValue() {
+		return value;
+	}
+
+	public void addChild(T childValue) {
+		Tree<T> childTree = new Tree<>();
+		childTree.setValue(childValue);
+		this.children.add(childTree);
+	}
+
+	public List<Tree<T>> getChildren() {
 		return children;
 	}
 
-	public void setChildren(MyLinkedList<Tree<T>> children) {
-		this.children = children;
+	// --- Aufgabe 2: Implementierungen ---
+
+	public int size() {
+		// Fix: Ein Knoten zählt nur als 1, wenn er auch einen echten Wert hat!
+		int totalSize = (this.value != null) ? 1 : 0;
+
+		// Addiere rekursiv die Groesse aller Kinder
+		for (Tree<T> child : children) {
+			totalSize += child.size();
+		}
+
+		return totalSize;
+	}
+
+	public boolean contains(Object o) {
+		// Basisfall: Befindet sich das Objekt in diesem Knoten?
+		if (this.value != null && this.value.equals(o)) {
+			return true;
+		}
+
+		// Rekursionsschritt: Suche in allen Kindern weiter
+		for (Tree<T> child : children) {
+			if (child.contains(o)) {
+				return true; 
+			}
+		}
+
+		return false;
 	}
 }

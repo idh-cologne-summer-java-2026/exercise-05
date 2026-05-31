@@ -179,18 +179,26 @@ public class MyLinkedList<T> {
 		first = null;
 	}
 
-	/**
-	 * Returns the value at the specified index, or {@code null} if out of bounds.
-	 *
-	 * @param index zero-based position of the element to retrieve
-	 * @return the value at {@code index}, or {@code null}
-	 */
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
+		ListElement element = getElementRecursive(first, index);
+		// Gib den Wert (payload) zurück, wenn gefunden, sonst null
+		return element != null ? element.payload : null;
+	}
+
+	// Die rekursive Hilfsmethode
+	private ListElement getElementRecursive(ListElement current, int index) {
+		// Basisfall 1: Ende der Liste erreicht (oder Liste ist leer)
+		if (current == null) {
 			return null;
-		else 
-			return el.payload;
+		}
+		
+		// Basisfall 2: Richtiger Index gefunden
+		if (index == 0) {
+			return current;
+		}
+		
+		// Rekursionsschritt: Gehe zum nächsten Element und zähle Index runter
+		return getElementRecursive(current.next, index - 1);
 	}
 
 	/**
