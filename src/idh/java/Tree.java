@@ -17,10 +17,16 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		int count = 0;
+		if(this.value != null) {
+			count = 1;
+		} 
+		for( int i = 0; i < children.size(); i++) {
+			count += children.get(i).size();
+		}
+		return count;
 	}
-
+ 
 	/**
 	 * Checks whether the tree contains a value that is equal to the given object.
 	 * I.e., the comparison between the objects is done with {@link Object#equals}.
@@ -31,7 +37,15 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		if(this.value != null && this.value.equals(object)) {
+			return true;
+		}
+		
+		for(int i = 0; i < children.size(); i++) {
+			if(children.get(i).contains(object)) {
+				return true;
+			}
+		}
 		return false;
 	}
 

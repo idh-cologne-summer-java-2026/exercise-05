@@ -7,6 +7,10 @@ public class MyLinkedList<T> {
 	 * 
 	 * It's an "inner class", i.e., can only be used within MyLinkedList. 
 	 */
+	
+	
+	
+	
 	private class ListElement {
 		T payload;
 		ListElement next = null;
@@ -14,13 +18,12 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 		}
-	}
+	
 
 	/**
 	 * We only need to store the very first element of our list, because it will
 	 * know whether there is a next element.
 	 */
-	ListElement first;
 
 	/**
      * Returns the number of elements in this list.
@@ -28,18 +31,38 @@ public class MyLinkedList<T> {
      * @return the number of elements
      */
 	public int size() {
-		if (isEmpty())
-			return 0;
-		int s = 1;
-		ListElement current = first;
-
-		while (current.next != null) {
-			current = current.next;
-			s += 1;
+		if(next == null) {
+			return 1;
+		} else {
+			return next.size()+1;
 		}
-		return s;
 	}
 
+	public T get(int index) {
+		if(index == 0) {
+			return payload;
+		} else {
+			if(next == null) {
+				return null;
+			} else {
+				return next.get(index-1);
+			}
+		}
+	}
+}
+	
+	
+	
+	
+	ListElement first;
+	
+	public T get(int index) {
+		if(isEmpty()) {
+			return null;
+		}
+		return first.get(index);
+	}
+	
 	/**
      * Returns {@code true} if this list contains the specified object.
      * Comparison is performed using {@link Object#equals}.
@@ -47,6 +70,16 @@ public class MyLinkedList<T> {
      * @param o the object to search for
      * @return {@code true} if the object is present, {@code false} otherwise
      */
+
+	public int size() {
+		
+		if (isEmpty())
+			return 0;
+		return first.size();
+		}
+	
+	
+	
 	public boolean contains(Object o) {
 		ListElement current = first;
 
@@ -185,13 +218,9 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
-	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
-			return null;
-		else 
-			return el.payload;
-	}
+	
+	
+	
 
 	/**
 	 * Internal method that iterates over the list, returning the last element

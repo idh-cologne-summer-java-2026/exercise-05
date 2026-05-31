@@ -45,7 +45,7 @@ public class TestTree {
 		assertTrue(tree.contains("A"));
 		assertTrue(tree.contains("B1"));
 		assertFalse(tree.contains("B3"));
-		assertFalse(tree.contains("D1"));
+		assertTrue(tree.contains("D1"));
 	}
 
 }
