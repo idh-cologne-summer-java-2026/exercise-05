@@ -31,8 +31,18 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
+
+	    if (value.equals(object)) {
+	        return true;
+	    }
+
+	    for (int i = 0; i < children.size(); i++) {
+	        if (children.get(i).contains(object)) {
+	            return true;
+	        }
+	    }
+
+	    return false;
 	}
 
 	/**
