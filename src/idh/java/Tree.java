@@ -77,7 +77,7 @@ public class Tree<T> {
 	}
 
 	/**
-	 * Produces a string representation of the tree. Subtrees are indented with spaces. 
+	 * Produces a string representation of the tree. Subtrees are indented with spaces
 	 * A tree with the value "A" and the two children "B" and "C" is shown like this:
 	 * <pre>
 	 * A
