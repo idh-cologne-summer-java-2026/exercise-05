@@ -1,94 +1,110 @@
 package idh.java;
 
 public class Tree<T> {
-	/**
-	 * The value stored at this tree node
-	 */
-	T value;
 
-	/**
-	 * The list of children
-	 */
-	MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
+    /**
+     * The value stored at this tree node
+     */
+    T value;
 
-	/**
-	 * Returns the number of nodes in this tree.
-	 * 
-	 * @return the number of nodes in this tree
-	 */
-	public int size() {
-		// TODO: Implement me!
-		return 0;
-	}
+    /**
+     * The list of children
+     */
+    MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
 
-	/**
-	 * Checks whether the tree contains a value that is equal to the given object.
-	 * I.e., the comparison between the objects is done with {@link Object#equals}.
-	 * The method returns false when all nodes have been visited and none of them is
-	 * equal to the object. It returns true when a matching object has been found.
-	 * 
-	 * @param object The object that we want to check for
-	 * @return true or false
-	 */
-	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
-	}
+    /**
+     * Returns the number of nodes in this tree.
+     * 
+     * @return the number of nodes in this tree
+     */
+    public int size() {
+        int count = 0;
 
-	/**
-	 * Adds a child to this node. The object representing the sub tree is
-	 * automatically created, and added to the children's list.
-	 * 
-	 * @param object The value we want to store.
-	 */
-	public void addChild(T object) {
-		Tree<T> subtree = new Tree<T>();
-		subtree.setValue(object);
-		getChildren().add(subtree);
-	}
+        if (value != null) {
+            count = 1;
+        }
 
-	private String toString(int indentation) {
-		StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < getChildren().size(); i++) {
+            count += getChildren().get(i).size();
+        }
 
-		buf.append(" ".repeat(indentation));
-		buf.append(this.getValue());
-		buf.append('\n');
+        return count;
+    }
 
-		for (int i = 0; i < getChildren().size(); i++) {
-			buf.append(getChildren().get(i).toString(indentation + 2));
-		}
+    /**
+     * Checks whether the tree contains a value that is equal to the given object.
+     * I.e., the comparison between the objects is done with Object.equals.
+     * The method returns false when all nodes have been visited and none of them is
+     * equal to the object. It returns true when a matching object has been found.
+     * 
+     * @param object The object that we want to check for
+     * @return true or false
+     */
+    public boolean contains(T object) {
+        if (value != null && value.equals(object)) {
+            return true;
+        }
 
-		return buf.toString();
-	}
+        for (int i = 0; i < getChildren().size(); i++) {
+            if (getChildren().get(i).contains(object)) {
+                return true;
+            }
+        }
 
-	/**
-	 * Produces a string representation of the tree. Subtrees are indented with spaces. 
-	 * A tree with the value "A" and the two children "B" and "C" is shown like this:
-	 * <pre>
-	 * A
-	 *   B
-	 *   C
-	 * </pre>
-	 * 
-	 * 
-	 */
-	public String toString() {
-		return toString(0);
-	}
+        return false;
+    }
 
-	public T getValue() {
-		return value;
-	}
+    /**
+     * Adds a child to this node. The object representing the sub tree is
+     * automatically created, and added to the children's list.
+     * 
+     * @param object The value we want to store.
+     */
+    public void addChild(T object) {
+        Tree<T> subtree = new Tree<T>();
+        subtree.setValue(object);
+        getChildren().add(subtree);
+    }
 
-	public void setValue(T value) {
-		this.value = value;
-	}
+    private String toString(int indentation) {
+        StringBuffer buf = new StringBuffer();
 
-	public MyLinkedList<Tree<T>> getChildren() {
-		return children;
-	}
+        buf.append(" ".repeat(indentation));
+        buf.append(this.getValue());
+        buf.append('\n');
 
-	public void setChildren(MyLinkedList<Tree<T>> children) {
-		this.children = children;
-	}
+        for (int i = 0; i < getChildren().size(); i++) {
+            buf.append(getChildren().get(i).toString(indentation + 2));
+        }
+
+        return buf.toString();
+    }
+
+    /**
+     * Produces a string representation of the tree. Subtrees are indented with spaces.
+     * A tree with the value "A" and the two children "B" and "C" is shown like this:
+     * 
+     * A
+     *   B
+     *   C
+     */
+    public String toString() {
+        return toString(0);
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public MyLinkedList<Tree<T>> getChildren() {
+        return children;
+    }
+
+    public void setChildren(MyLinkedList<Tree<T>> children) {
+        this.children = children;
+    }
 }
