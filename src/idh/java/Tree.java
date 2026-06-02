@@ -18,8 +18,19 @@ public class Tree<T> {
 	 */
 	public int size() {
 		// TODO: Implement me!
-		return 0;
+		// Gesamtzahl nodes im Baum berechnen
+		if (this.value == null && this.children.isEmpty()) {
+		return 0; // Ist der Baum leer => Rückgabewert ist 0
 	}
+		int totalSize = 1; 
+		for (int i = 0; i < this.children.size(); i++) { 
+			Tree<T> child = this.children.get(i); 
+			totalSize += child.size(); 
+		}
+		
+		return totalSize; 
+	}
+	
 
 	/**
 	 * Checks whether the tree contains a value that is equal to the given object.
@@ -32,6 +43,15 @@ public class Tree<T> {
 	 */
 	public boolean contains(T object) {
 		// TODO: Implement me!
+		if (this.value != null && this.value.equals(object)) {
+			return true; 
+		}
+		
+		for (int i= 0; i < this.children.size(); i++) { 
+			if (this.children.get(i).contains(object)) {
+				return true; 
+			}
+		}
 		return false;
 	}
 

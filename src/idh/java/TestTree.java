@@ -27,12 +27,12 @@ public class TestTree {
 	@Test
 	public void testSize() {
 		Tree<String> someTree = new Tree<String>();
-		assertEquals(0, someTree.size());
+		assertEquals(0, someTree.size()); // Größe ist null 
 
 		someTree.addChild("A");
-		assertEquals(1, someTree.size());
+		assertEquals(1, someTree.size()); // Größe ist 1
 
-		assertEquals(9, tree.size());
+		assertEquals(9, tree.size()); // Gesamtgröße eines Baumes ist 7 
 	}
 	
 	@Test

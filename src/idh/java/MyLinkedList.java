@@ -9,8 +9,8 @@ public class MyLinkedList<T> {
 	 */
 	private class ListElement {
 		T payload;
-		ListElement next = null;
-
+		ListElement next = null; // "Knoten-Klasse" & Listenanfang (null)
+        // get(int) Methode durch rekursive Methode ersetzen
 		ListElement(T value) {
 			this.payload = value;
 		}
@@ -104,7 +104,7 @@ public class MyLinkedList<T> {
 	 *         if the index is out of bounds
 	 */
 	public T set(int index, T element) {
-	    ListElement e = getElement(index);
+	    ListElement e = getElement(index); // private Hilfsmethode 
 	    if (e != null) {
 	        T oldValue = e.payload;
 	        e.payload = element;
@@ -217,17 +217,22 @@ public class MyLinkedList<T> {
 	 * @param index
 	 * @return
 	 */
-	private ListElement getElement(int index) {
-		if (isEmpty())
-			return null;
-		ListElement current = first;
-		while (current != null) {
-			if (index == 0)
-				return current;
-			index--;
-			current = current.next;
+	private ListElement getElement(int index) { // private Hilfsmethode durch rekursive Hilfsmethode ersetzen
+
+		return getElementRecursive(first, index);
+	}
+	
+		private ListElement getElementRecursive(ListElement current, int index) {
+		
+			if (current != null || index < 0) {
+				return null;
+			}
+			
+			if (index == 0) {
+			return current; 
 		}
-		return null;
+		return getElementRecursive(current.next, index -1);
 	}
 
-}
+		
+	}
