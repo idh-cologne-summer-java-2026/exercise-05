@@ -1,7 +1,7 @@
 package idh.java;
 
 public class MyLinkedList<T> {
-
+   private ListElement first = null; 
 	/**
 	 * Helper class for the list elements
 	 * 
@@ -20,7 +20,6 @@ public class MyLinkedList<T> {
 	 * We only need to store the very first element of our list, because it will
 	 * know whether there is a next element.
 	 */
-	ListElement first;
 
 	/**
      * Returns the number of elements in this list.
@@ -28,18 +27,21 @@ public class MyLinkedList<T> {
      * @return the number of elements
      */
 	public int size() {
-		if (isEmpty())
-			return 0;
-		int s = 1;
-		ListElement current = first;
-
-		while (current.next != null) {
-			current = current.next;
-			s += 1;
+		int count =0; 
+		ListElement current = first; 
+		while(current !=null) {
+			count++; 
+			current = current.next; 
 		}
-		return s;
+		return count; 
 	}
-
+	public T get(int index) {
+	  ListElement e = getElement(index); 
+	    if (e!=null) {
+		  return e.payload; 
+	    }
+	    return null; 
+	  }
 	/**
      * Returns {@code true} if this list contains the specified object.
      * Comparison is performed using {@link Object#equals}.
@@ -185,13 +187,7 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
-	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
-			return null;
-		else 
-			return el.payload;
-	}
+	
 
 	/**
 	 * Internal method that iterates over the list, returning the last element
