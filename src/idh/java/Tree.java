@@ -12,28 +12,46 @@ public class Tree<T> {
 	MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
 
 	/**
-	 * Returns the number of nodes in this tree.
-	 * 
-	 * @return the number of nodes in this tree
-	 */
-	public int size() {
-		// TODO: Implement me!
+ * Returns the number of nodes in this tree.
+ * 
+ * @return the number of nodes in this tree
+ */
+public int size() {
+	if (value == null) {
 		return 0;
 	}
 
-	/**
-	 * Checks whether the tree contains a value that is equal to the given object.
-	 * I.e., the comparison between the objects is done with {@link Object#equals}.
-	 * The method returns false when all nodes have been visited and none of them is
-	 * equal to the object. It returns true when a matching object has been found.
-	 * 
-	 * @param object The object that we want to check for
-	 * @return true or false
-	 */
-	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
+	int count = 1;
+
+	for (int i = 0; i < children.size(); i++) {
+		count += children.get(i).size();
 	}
+
+	return count;
+}
+
+/**
+ * Checks whether the tree contains a value that is equal to the given object.
+ * I.e., the comparison between the objects is done with {@link Object#equals}.
+ * The method returns false when all nodes have been visited and none of them is
+ * equal to the object. It returns true when a matching object has been found.
+ * 
+ * @param object The object that we want to check for
+ * @return true or false
+ */
+public boolean contains(T object) {
+	if (value != null && value.equals(object)) {
+		return true;
+	}
+
+	for (int i = 0; i < children.size(); i++) {
+		if (children.get(i).contains(object)) {
+			return true;
+		}
+	}
+
+	return false;
+}
 
 	/**
 	 * Adds a child to this node. The object representing the sub tree is
@@ -62,8 +80,11 @@ public class Tree<T> {
 	}
 
 	/**
-	 * Produces a string representation of the tree. Subtrees are indented with spaces. 
-	 * A tree with the value "A" and the two children "B" and "C" is shown like this:
+	 * Produces a string representation of the tree. Subtrees are indented with
+	 * spaces.
+	 * A tree with the value "A" and the two children "B" and "C" is shown like
+	 * this:
+	 * 
 	 * <pre>
 	 * A
 	 *   B

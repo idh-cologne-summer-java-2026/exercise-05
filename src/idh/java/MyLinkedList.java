@@ -180,54 +180,54 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-	 * Returns the value at the specified index, or {@code null} if out of bounds.
-	 *
-	 * @param index zero-based position of the element to retrieve
-	 * @return the value at {@code index}, or {@code null}
-	 */
-	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
-			return null;
-		else 
-			return el.payload;
-	}
-
-	/**
-	 * Internal method that iterates over the list, returning the last element
-	 * (i.e., the one whose next field is null)
-	 * 
-	 * @return
-	 */
-	private ListElement last() {
-		if (first == null)
-			return null;
-		ListElement current = first;
-
-		while (current.next != null) {
-			current = current.next;
-		}
-		return current;
-	}
-
-	/**
-	 * Internal method to get the list element (not the value) of the list at the
-	 * specified index position.
-	 * 
-	 * @param index
-	 * @return
-	 */
-	private ListElement getElement(int index) {
-		if (isEmpty())
-			return null;
-		ListElement current = first;
-		while (current != null) {
-			if (index == 0)
-				return current;
-			index--;
-			current = current.next;
-		}
+ * Returns the value at the specified index, or {@code null} if out of bounds.
+ *
+ * @param index zero-based position of the element to retrieve
+ * @return the value at {@code index}, or {@code null}
+ */
+public T get(int index) {
+	ListElement el = getElement(index);
+	if (el == null)
 		return null;
-	}
+	else
+		return el.payload;
+}
 
+/**
+ * Internal method that iterates over the list, returning the last element
+ * (i.e., the one whose next field is null)
+ * 
+ * @return
+ */
+private ListElement last() {
+	if (first == null)
+		return null;
+	ListElement current = first;
+
+	while (current.next != null) {
+		current = current.next;
+	}
+	return current;
+}
+
+/**
+ * Internal method to get the list element (not the value) of the list at the
+ * specified index position.
+ * 
+ * @param index
+ * @return
+ */
+private ListElement getElement(int index) {
+	return getElementRecursive(first, index);
+}
+
+private ListElement getElementRecursive(ListElement current, int index) {
+	if (current == null)
+		return null;
+
+	if (index == 0)
+		return current;
+
+	return getElementRecursive(current.next, index - 1);
+}
 }
