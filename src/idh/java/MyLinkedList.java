@@ -14,6 +14,18 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 		}
+		
+		public T get(int index) {
+			if (index == 0) {
+				return payload;
+			}
+			else {
+				if (next == null) {
+					return null;
+				}
+				return next.get(index - 1);
+			}
+		}
 	}
 
 	/**
@@ -186,11 +198,10 @@ public class MyLinkedList<T> {
 	 * @return the value at {@code index}, or {@code null}
 	 */
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
+		if (first == null) {
 			return null;
-		else 
-			return el.payload;
+		}
+		return first.get(index);
 	}
 
 	/**
