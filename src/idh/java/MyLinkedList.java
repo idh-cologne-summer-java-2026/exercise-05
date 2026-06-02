@@ -14,8 +14,31 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 		}
+	
+	/** Internal helper method retrieving the size of the list, 
+	 * 	whenever called by its corresponding wrapper class   
+	 */
+		public int size() {
+			if (next == null) {
+				return 1;
+			} else {
+				return next.size() + 1;
+			}
+		}
+			
+		/** Internal helper method retrieving the payload at the 
+		 * specified index position, whenever it is called by its
+		 * corresponding wrapper class   
+		 */
+		public T get(int index) {
+			if (index == 0) {
+				return payload;
+			} else {
+				return next.get(index-1);
+			}
+		}
 	}
-
+	
 	/**
 	 * We only need to store the very first element of our list, because it will
 	 * know whether there is a next element.
@@ -23,21 +46,17 @@ public class MyLinkedList<T> {
 	ListElement first;
 
 	/**
-     * Returns the number of elements in this list.
+     * Wrapper method ("Einsprungsmethode") calling its corresponding 
+     * helper class, which in turn determines the number of elements 
+     * in this list by means of recursion (unless the number of elements is 0)     
      *
-     * @return the number of elements
+     * @return function call of helper class for first list element
      */
 	public int size() {
-		if (isEmpty())
+		if (isEmpty()) {
 			return 0;
-		int s = 1;
-		ListElement current = first;
-
-		while (current.next != null) {
-			current = current.next;
-			s += 1;
-		}
-		return s;
+		} 
+		return first.size();	
 	}
 
 	/**
@@ -180,17 +199,19 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-	 * Returns the value at the specified index, or {@code null} if out of bounds.
+	 * Wrapper method ("Einsprungsmethode") calling its corresponding 
+     * helper class, which in turn retrieves the payload of the element 
+     * at the specified index by means of recursion (unless element is out of bounds)  
 	 *
 	 * @param index zero-based position of the element to retrieve
-	 * @return the value at {@code index}, or {@code null}
+	 * @return function call of helper class, or {@code null} if out of bounds
 	 */
 	public T get(int index) {
 		ListElement el = getElement(index);
 		if (el == null)
 			return null;
 		else 
-			return el.payload;
+			return first.get(index);
 	}
 
 	/**
@@ -211,7 +232,7 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-	 * Internal method to get the list element (not the value) of the list at the
+	 * Internal method to get the entire list element (not only the value) of the list at the
 	 * specified index position.
 	 * 
 	 * @param index
@@ -229,5 +250,6 @@ public class MyLinkedList<T> {
 		}
 		return null;
 	}
-
 }
+
+
