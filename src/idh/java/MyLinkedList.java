@@ -14,6 +14,18 @@ public class MyLinkedList<T> {
 		ListElement(T value) {
 			this.payload = value;
 		}
+		
+		public T get(int index) {
+			if (index == 0) {
+				return payload;
+			}else {
+				if(next == null){
+					return null;
+				}else {
+					return next.get(index-1);
+				}
+			}
+		}
 	}
 
 	/**
@@ -27,6 +39,14 @@ public class MyLinkedList<T> {
      *
      * @return the number of elements
      */
+	public T get(int index) {
+		if(isEmpty()) {
+			return null;
+			}
+		return first.get(index);
+
+}
+	
 	public int size() {
 		if (isEmpty())
 			return 0;
@@ -185,13 +205,14 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
-	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
-			return null;
-		else 
-			return el.payload;
-	}
+//	Ersetzen
+//	public T get(int index) {
+//		ListElement el = getElement(index);
+//		if (el == null)
+//			return null;
+//		else 
+//			return el.payload;
+//	}
 
 	/**
 	 * Internal method that iterates over the list, returning the last element

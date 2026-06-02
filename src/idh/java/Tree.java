@@ -17,9 +17,15 @@ public class Tree<T> {
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
-	}
+		 int summe = 1;
+
+		    for (int i = 0; i < children.size(); i++) {
+		        summe += children.get(i).size();
+		    }
+
+		    return summe;
+		}
+	
 
 	/**
 	 * Checks whether the tree contains a value that is equal to the given object.
@@ -31,9 +37,18 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
-		return false;
-	}
+		    if (value.equals(object)) {
+		        return true;
+		    }
+
+		    for (int i = 0; i < children.size(); i++) {
+		        if (children.get(i).contains(object)) {
+		            return true;
+		        }
+		    }
+
+		    return false;
+		}
 
 	/**
 	 * Adds a child to this node. The object representing the sub tree is
@@ -46,7 +61,7 @@ public class Tree<T> {
 		subtree.setValue(object);
 		getChildren().add(subtree);
 	}
-
+	
 	private String toString(int indentation) {
 		StringBuffer buf = new StringBuffer();
 
