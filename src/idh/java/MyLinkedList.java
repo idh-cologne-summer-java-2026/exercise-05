@@ -186,11 +186,20 @@ public class MyLinkedList<T> {
 	 * @return the value at {@code index}, or {@code null}
 	 */
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
+		if (isEmpty() || index < 0) {
 			return null;
-		else 
-			return el.payload;
+		}
+		return getRecursive(first, index);
+	}
+
+	private T getRecursive(ListElement current, int index) {
+		if (current == null) {
+			return null;
+		}
+		if (index == 0) {
+			return current.payload;
+		}
+		return getRecursive(current.next, index - 1);
 	}
 
 	/**
