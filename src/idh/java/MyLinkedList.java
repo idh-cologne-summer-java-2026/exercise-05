@@ -220,14 +220,26 @@ public class MyLinkedList<T> {
 	private ListElement getElement(int index) {
 		if (isEmpty())
 			return null;
-		ListElement current = first;
-		while (current != null) {
-			if (index == 0)
-				return current;
-			index--;
-			current = current.next;
-		}
-		return null;
+		return getElementRecursive(first, index);
+	}
+	
+	/**
+	 * Recursive helper method to traverse the list and find the element at the
+	 * specified index.
+	 * Basisfall 1: Wenn das aktuelle Element null beträgt, wird null zurückgegeben (Element nicht gefunden).
+	 * Basisfall 2: Wenn der Index 0 ist, wird das aktuelle Element zurückgegben (Element gefunden).
+	 * Rekursiver Fall: Rekursiv mit dem nächsten Element und Index-1 aufrufen.
+	 * 
+	 * @param current the current element in the list
+	 * @param index the remaining index to find
+	 * @return the element at the specified index, or null if not found
+	 */
+	private ListElement getElementRecursive(ListElement current, int index) {
+		if (current == null)
+			return null;
+		if (index == 0)
+			return current;
+		return getElementRecursive(current.next, index - 1);
 	}
 
 }

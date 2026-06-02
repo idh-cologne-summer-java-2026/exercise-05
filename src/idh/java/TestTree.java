@@ -47,5 +47,6 @@ public class TestTree {
 		assertFalse(tree.contains("B3"));
 		assertFalse(tree.contains("D1"));
 	}
+	//contains() sucht *NUR* im Root und in direkten Kindern, nicht rekursiv in Enkeln, daher ist contains("D1") falsch.
 
 }

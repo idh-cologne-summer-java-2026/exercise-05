@@ -12,13 +12,18 @@ public class Tree<T> {
 	MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
 
 	/**
+	 * Zählt 1 wenn der Root-Knoten einen Wert hat (value != null), ansonsten 0.
+	 * Addiert rekursiv die Größe aller Kind-Bäume.
+	 * Beispiel: Ein Tree mit Root "A" und Kindern "B1", "B2", deren Kinder usw. zählt alle 9 Knoten
 	 * Returns the number of nodes in this tree.
-	 * 
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		int count = (value != null ? 1 : 0);
+		for (int i = 0; i < getChildren().size(); i++) {
+			count += getChildren().get(i).size();
+		}
+		return count;
 	}
 
 	/**
@@ -31,9 +36,21 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		// Check this node's value
+		if (value != null && value.equals(object)) {
+			return true;
+		}
+		// Check all immediate children's values
+		for (int i = 0; i < getChildren().size(); i++) {
+			Tree<T> child = getChildren().get(i);
+			if (child.getValue() != null && child.getValue().equals(object)) {
+				return true;
+			}
+		}
 		return false;
-	}
+	} //Prüft, ob der Root-Wert gleich dem gesuchten Objekt ist;
+	//Prüft dann alle direkten Kinder auf gleichen Wert;
+	// Gibt true zurück, wenn eine Übereinstimmung gefunden wird
 
 	/**
 	 * Adds a child to this node. The object representing the sub tree is
