@@ -2,7 +2,7 @@ package idh.java;
 
 public class Tree<T> {
 	/**
-	 * The value stored at this tree node
+	 * The value stored at this tree nod
 	 */
 	T value;
 
