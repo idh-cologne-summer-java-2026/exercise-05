@@ -3,7 +3,7 @@ package idh.java;
 public class MyLinkedList<T> {
 
 	/**
-	 * Helper class for the list elements
+	 * Helper class for the list element
 	 * 
 	 * It's an "inner class", i.e., can only be used within MyLinkedList. 
 	 */

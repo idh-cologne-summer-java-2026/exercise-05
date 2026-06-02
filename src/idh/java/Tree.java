@@ -54,7 +54,7 @@ public class Tree<T> {
 	 * Adds a child to this node. The object representing the sub tree is
 	 * automatically created, and added to the children's list.
 	 * 
-	 * @param object The value we want to store.
+	 * @param object The value we want to store
 	 */
 	public void addChild(T object) {
 		Tree<T> subtree = new Tree<T>();
