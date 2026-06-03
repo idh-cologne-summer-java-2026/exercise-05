@@ -5,9 +5,16 @@ Programmierung 2
 Klonen Sie dieses Repository direkt in Eclipse und importieren Sie das Projekt. Legen Sie einen neuen Branch an, den Sie nach Ihrem GitHub-Benutzernamen benennen.
 
 ## Aufgabe 1
+Sie finden im Package `idh.java` die beiden Klassen `MyLinkedList` und `TestMyLinkedList` aus der Referenzlösung von Übung 4. Darin befinden sich die iterativen Implementierungen für die verkettete Liste. Ersetzen Sie für die Methode `get(int)` die iterative Implementierung (mit Schleife) durch eine rekursive. 
 
+Überlegen Sie dafür zunächst wie Sie das Problem in Basis- und Rekursionsschritt zerlegen können, und ob es ggf. auch mehrere Basisfälle gibt und welche das sind.
 
-## Aufgabe 2 (optional)
+## Aufgabe 2
+In der Sitzung haben wir über die Datenstruktur Tree gesprochen. In der Klasse `Tree` finden Sie eine einfache Implementierung dafür, in der Klasse `TestTree` zugehörige Unit-Tests. Implementieren Sie die beiden Methoden `size()` und `contains(Object)`. 
+
+Vielleicht hilft es, sich einen Baum als verkettete Liste (linked list) vorzustellen -- mit dem Unterschied, dass ein Element nicht nur einen Nachfolger hat, sondern mehrere (die wir dann als Kinder bezeichnen). Strukturell sind verkettete Listen und Bäume eng verwandt.
+
+## Aufgabe 3 (optional)
 
 Im Spiel ["Türme von Hanoi"](https://de.wikipedia.org/wiki/Türme_von_Hanoi) besteht die Aufgabe darin, einen Stapel Scheiben vom linken auf den rechten Stab zu befördern. Dazu darf ein dritter Stab in der Mitte verwendet werden. In jedem Zug darf nur eine Scheibe auf einen anderen Stab gelegt werden, allerdings darf niemals eine größere auf einer kleineren Scheibe liegen.
 
