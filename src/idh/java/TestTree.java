@@ -12,8 +12,7 @@ public class TestTree {
 
 	@BeforeEach
 	public void setUp() {
-		tree = new Tree<String>();
-		tree.setValue("A");
+		tree = new Tree<String>("A");
 		tree.addChild("B1");
 		tree.addChild("B2");
 		tree.getChildren().get(0).addChild("C1");
@@ -26,18 +25,18 @@ public class TestTree {
 
 	@Test
 	public void testSize() {
-		Tree<String> someTree = new Tree<String>();
-		assertEquals(0, someTree.size());
+		Tree<String> someTree = new Tree<String>("R");
+		assertEquals(1, someTree.size());
 
 		someTree.addChild("A");
-		assertEquals(1, someTree.size());
+		assertEquals(2, someTree.size());
 
 		assertEquals(9, tree.size());
 	}
 	
 	@Test
 	public void testContains() {
-		Tree<String> someTree = new Tree<String>();
+		Tree<String> someTree = new Tree<String>("R");
 		assertFalse(someTree.contains("A"));
 		someTree.addChild("A");
 		assertTrue(someTree.contains("A"));
@@ -45,7 +44,7 @@ public class TestTree {
 		assertTrue(tree.contains("A"));
 		assertTrue(tree.contains("B1"));
 		assertFalse(tree.contains("B3"));
-		assertFalse(tree.contains("D1"));
+		assertTrue(tree.contains("D1"));
 	}
 
 }

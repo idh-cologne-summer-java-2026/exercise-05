@@ -11,14 +11,21 @@ public class Tree<T> {
 	 */
 	MyLinkedList<Tree<T>> children = new MyLinkedList<Tree<T>>();
 
+	public Tree(T value) {
+		this.value = value;
+	}
+	
 	/**
 	 * Returns the number of nodes in this tree.
 	 * 
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
-		// TODO: Implement me!
-		return 0;
+		int size = 1;
+		for (int i = 0; i < children.size(); i++) {
+			size += children.get(i).size();
+		}
+		return size;
 	}
 
 	/**
@@ -31,7 +38,12 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		if (object.equals(value))
+			return true;
+		for (int i = 0; i < children.size(); i++) {
+			if (children.get(i).contains(object))
+				return true;
+		}
 		return false;
 	}
 
@@ -42,8 +54,7 @@ public class Tree<T> {
 	 * @param object The value we want to store.
 	 */
 	public void addChild(T object) {
-		Tree<T> subtree = new Tree<T>();
-		subtree.setValue(object);
+		Tree<T> subtree = new Tree<T>(object);
 		getChildren().add(subtree);
 	}
 
