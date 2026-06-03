@@ -1,6 +1,23 @@
 package idh.java;
 
 public class Tree<T> {
+	
+	
+	private Node node;
+	private int size = 0;
+	
+	//class depicting a Node in the tree -> each node has a value as well as two potential neighbors (in the case of a binary tree?)
+	private class Node {
+		int value;
+		Node left;
+		Node right;
+		
+		Node(int cont){
+			value = cont;
+			left = right = null; //same as left = null and right = null
+		}
+	}
+	
 	/**
 	 * The value stored at this tree node
 	 */
@@ -13,14 +30,20 @@ public class Tree<T> {
 
 	/**
 	 * Returns the number of nodes in this tree.
+	 * Basically, search strategies?
+	 * Either traverse branch-wise or level-wise (up-down first or left-right first)
+	 * And count steps?. Would I have to count Node objects or is the Node class unnecessary?
 	 * 
 	 * @return the number of nodes in this tree
 	 */
 	public int size() {
 		// TODO: Implement me!
-		return 0;
+		
+		return size;
 	}
 
+	
+	
 	/**
 	 * Checks whether the tree contains a value that is equal to the given object.
 	 * I.e., the comparison between the objects is done with {@link Object#equals}.
@@ -31,7 +54,7 @@ public class Tree<T> {
 	 * @return true or false
 	 */
 	public boolean contains(T object) {
-		// TODO: Implement me!
+		this.traverse(node);
 		return false;
 	}
 
@@ -45,6 +68,7 @@ public class Tree<T> {
 		Tree<T> subtree = new Tree<T>();
 		subtree.setValue(object);
 		getChildren().add(subtree);
+		size++;
 	}
 
 	private String toString(int indentation) {
@@ -90,5 +114,15 @@ public class Tree<T> {
 
 	public void setChildren(MyLinkedList<Tree<T>> children) {
 		this.children = children;
+	}
+	
+	/**
+	 * Helper method to traverse the Tree
+	 */
+	public void traverse(Node node) {
+		if(node == null) //Tree is empty
+			return;
+		traverse(node.left);
+		traverse(node.right);
 	}
 }
