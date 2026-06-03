@@ -5,7 +5,7 @@ public class MyLinkedList<T> {
 	/**
 	 * Helper class for the list elements
 	 * 
-	 * It's an "inner class", i.e., can only be used within MyLinkedList. 
+	 * It's an "inner class", i.e., can only be used within MyLinkedList.
 	 */
 	private class ListElement {
 		T payload;
@@ -23,10 +23,10 @@ public class MyLinkedList<T> {
 	ListElement first;
 
 	/**
-     * Returns the number of elements in this list.
-     *
-     * @return the number of elements
-     */
+	 * Returns the number of elements in this list.
+	 *
+	 * @return the number of elements
+	 */
 	public int size() {
 		if (isEmpty())
 			return 0;
@@ -41,12 +41,12 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-     * Returns {@code true} if this list contains the specified object.
-     * Comparison is performed using {@link Object#equals}.
-     *
-     * @param o the object to search for
-     * @return {@code true} if the object is present, {@code false} otherwise
-     */
+	 * Returns {@code true} if this list contains the specified object. Comparison
+	 * is performed using {@link Object#equals}.
+	 *
+	 * @param o the object to search for
+	 * @return {@code true} if the object is present, {@code false} otherwise
+	 */
 	public boolean contains(Object o) {
 		ListElement current = first;
 
@@ -54,30 +54,30 @@ public class MyLinkedList<T> {
 			if (current.payload.equals(o))
 				return true;
 			current = current.next;
-			
+
 		}
 		return false;
 	}
 
 	/**
-     * Removes the first occurrence of the specified object from the list.
-     * Comparison is performed using {@link Object#equals}.
-     *  
-     * @param o the object to remove
-     * @return {@code true} if an element was removed, {@code false} if not found
-     */
+	 * Removes the first occurrence of the specified object from the list.
+	 * Comparison is performed using {@link Object#equals}.
+	 * 
+	 * @param o the object to remove
+	 * @return {@code true} if an element was removed, {@code false} if not found
+	 */
 	public boolean remove(Object o) {
 		// If list is empty, we don't remove anything
 		if (isEmpty())
 			return false;
-		
+
 		// special treatment for first element
 		if (first.payload.equals(o)) {
 			first = first.next;
 			// important: End the function now
 			return true;
 		}
-		
+
 		ListElement current = first;
 		ListElement previous = null;
 		while (current != null) {
@@ -88,57 +88,55 @@ public class MyLinkedList<T> {
 			}
 			previous = current;
 			current = current.next;
-			
+
 		}
 		return false;
 	}
 
-	
 	/**
-	 * Replaces the element at the specified index with the given value and
-	 * returns the previously stored value.
+	 * Replaces the element at the specified index with the given value and returns
+	 * the previously stored value.
 	 *
 	 * @param index   zero-based position of the element to replace
 	 * @param element the new value to store at {@code index}
-	 * @return the value previously stored at {@code index}, or {@code null}
-	 *         if the index is out of bounds
+	 * @return the value previously stored at {@code index}, or {@code null} if the
+	 *         index is out of bounds
 	 */
 	public T set(int index, T element) {
-	    ListElement e = getElement(index);
-	    if (e != null) {
-	        T oldValue = e.payload;
-	        e.payload = element;
-	        return oldValue;
-	    }
-	    return null;
+		ListElement e = getElement(index);
+		if (e != null) {
+			T oldValue = e.payload;
+			e.payload = element;
+			return oldValue;
+		}
+		return null;
 	}
-	
-	/**
-     * Appends the specified value to the end of this list.
-     *
-     * @param value the value to add
-     */
-    public void add(T value) {
-        ListElement newElement = new ListElement(value);
-        if (first == null) {
-            first = newElement;
-        } else {
-            last().next = newElement;
-        }
-    }
-    	
 
-	 /**
-     * Removes and returns the element at the specified index.
-     * Returns {@code null} if the index is out of bounds.
-     * 
-     * @param index zero-based position of the element to remove
-     * @return the removed element's value, or {@code null} if out of bounds
-     */
+	/**
+	 * Appends the specified value to the end of this list.
+	 *
+	 * @param value the value to add
+	 */
+	public void add(T value) {
+		ListElement newElement = new ListElement(value);
+		if (first == null) {
+			first = newElement;
+		} else {
+			last().next = newElement;
+		}
+	}
+
+	/**
+	 * Removes and returns the element at the specified index. Returns {@code null}
+	 * if the index is out of bounds.
+	 * 
+	 * @param index zero-based position of the element to remove
+	 * @return the removed element's value, or {@code null} if out of bounds
+	 */
 	public T remove(int index) {
 		if (isEmpty())
 			return null;
-				
+
 		// special treatment for first element
 		if (index == 0) {
 			T removedValue = first.payload;
@@ -146,9 +144,9 @@ public class MyLinkedList<T> {
 			// important: End the function now
 			return removedValue;
 		}
-		
+
 		ListElement current = first;
-		ListElement previous = null;		
+		ListElement previous = null;
 		while (current != null) {
 			if (index == 0) {
 				T removedValue = current.payload;
@@ -164,17 +162,17 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-     * Returns {@code true} if this list contains no elements.
-     *
-     * @return {@code true} if the list is empty
-     */
+	 * Returns {@code true} if this list contains no elements.
+	 *
+	 * @return {@code true} if the list is empty
+	 */
 	public boolean isEmpty() {
 		return first == null;
 	}
 
 	/**
-     * Removes all elements from this list. The list will be empty after this call.
-     */
+	 * Removes all elements from this list. The list will be empty after this call.
+	 */
 	public void clear() {
 		first = null;
 	}
@@ -185,12 +183,26 @@ public class MyLinkedList<T> {
 	 * @param index zero-based position of the element to retrieve
 	 * @return the value at {@code index}, or {@code null}
 	 */
+//	public T get(int index) {
+//		ListElement el = getElement(index);
+//		if (el == null)
+//			return null;
+//		else
+//			return el.payload;
+//	}
+
+	// TODO: Implement recursively
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
+		ListElement elR = this.first;
+		if(this.first.payload == null) { //check if list is empty
 			return null;
-		else 
-			return el.payload;
+		}
+		else {
+			get(index);
+			get(index++); //don't know, this also seems wrong
+			return elR.payload;
+		}
+		
 	}
 
 	/**
