@@ -8,11 +8,11 @@ public class Tree<T> {
 	
 	//class depicting a Node in the tree -> each node has a value as well as two potential neighbors (in the case of a binary tree?)
 	private class Node {
-		int value;
+		Integer value; //changing to Object-Type to be able to use the contains method without casting
 		Node left;
 		Node right;
 		
-		Node(int cont){
+		Node(Integer cont){ //same here
 			value = cont;
 			left = right = null; //same as left = null and right = null
 		}
@@ -53,9 +53,17 @@ public class Tree<T> {
 	 * @param object The object that we want to check for
 	 * @return true or false
 	 */
-	public boolean contains(T object) {
-		this.traverse(node);
-		return false;
+	public boolean contains(T object, Node target) {	
+		this.traverse(object, target);
+//		if(node.equals(null)) {
+//			return false;
+//		}
+//		if(node.equals(object)) {
+//			return true;
+//		}else {
+//			return false;
+//		}
+//		return 
 	}
 
 	/**
@@ -118,11 +126,16 @@ public class Tree<T> {
 	
 	/**
 	 * Helper method to traverse the Tree
+	 * Changed the initial node value to Integer to gain access to the equals() method
 	 */
-	public void traverse(Node node) {
-		if(node == null) //Tree is empty
-			return;
-		traverse(node.left);
-		traverse(node.right);
+	public boolean traverse(Node node, T target) {
+		if(node.equals(null)) //Tree is empty
+			return false;
+		if(node.value.equals(target)) {
+			return true; //an else statement could be added, but would just be redundant it seems
+		} 
+		return traverse(node.left, target) || traverse(node.right, target);
+		
 	}
+	 
 }
