@@ -7,20 +7,35 @@ public class MyLinkedList<T> {
 	 * 
 	 * It's an "inner class", i.e., can only be used within MyLinkedList. 
 	 */
-	private class ListElement {
+	public class ListElement {
 		T payload;
 		ListElement next = null;
 
 		ListElement(T value) {
 			this.payload = value;
 		}
-	}
+
+		public  T get(int index) {
+			// base case 1: We have reached the place we want to return
+						if (index == 0)
+							return payload;
+
+						// base case 2: We have reached the element of the list
+						if (next == null)
+							return null;
+
+						// recursion step, we ask the next element
+						return next.get(index - 1);
+					}
+				}
+	
 
 	/**
 	 * We only need to store the very first element of our list, because it will
 	 * know whether there is a next element.
 	 */
 	ListElement first;
+	public Object next;
 
 	/**
      * Returns the number of elements in this list.
@@ -104,7 +119,7 @@ public class MyLinkedList<T> {
 	 *         if the index is out of bounds
 	 */
 	public T set(int index, T element) {
-	    ListElement e = getElement(index);
+	    ListElement e = (MyLinkedList<T>.ListElement) getElement(index);
 	    if (e != null) {
 	        T oldValue = e.payload;
 	        e.payload = element;
@@ -186,12 +201,19 @@ public class MyLinkedList<T> {
 	 * @return the value at {@code index}, or {@code null}
 	 */
 	public T get(int index) {
-		ListElement el = getElement(index);
-		if (el == null)
+		ListElement current = this.first;
+		while (current != null && index> 0) {
+			current = current.next;
+			index--;
+		}
+		if (current == null) {
 			return null;
-		else 
-			return el.payload;
+		}
+		return current.payload;
 	}
+		
+		
+	
 
 	/**
 	 * Internal method that iterates over the list, returning the last element
@@ -217,17 +239,15 @@ public class MyLinkedList<T> {
 	 * @param index
 	 * @return
 	 */
-	private ListElement getElement(int index) {
-		if (isEmpty())
-			return null;
-		ListElement current = first;
-		while (current != null) {
-			if (index == 0)
-				return current;
-			index--;
-			current = current.next;
-		}
-		return null;
-	}
+	private T getElement(int index) {
+		
+				if (isEmpty()) {
+					return null;
+				}
+				return first.get(index);
+	
+				
+	
 
-}
+
+}}
